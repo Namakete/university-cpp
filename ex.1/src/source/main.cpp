@@ -5,15 +5,9 @@
 #include "../header/pow.hpp"
 #include <cmath>
 
-int main(int argc, char **argv)
-{
-    std::cout << pow(2, 3) << std::endl;
+int main(int argc, char **argv){
     std::cout << math::pow(2, 3) << std::endl;
-    //
-    std::cout << pow(2.5, 3) << std::endl;
     std::cout << math::pow(2.5, 3) << std::endl;
-    //
-    std::cout << pow(2.5, -3) << std::endl;
     std::cout << math::pow(2.5, -3) << std::endl;
     return 0;
 }

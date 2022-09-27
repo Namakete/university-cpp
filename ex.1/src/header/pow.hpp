@@ -4,14 +4,12 @@
 
 namespace math
 {
-    /* A recursive function to get `x * y`. */
-    double multiply(double x, int y);
-
     /*
      * @brief A recursive function to get `a ^ b`.
      *
      * @param `base` is value container whose values are
      * summed of `exponent` times.
+     * 
      * @file From `pow.hpp`.
      */
     double pow(double base, int exponent);
