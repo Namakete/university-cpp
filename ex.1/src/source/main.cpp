@@ -3,14 +3,23 @@
 
 #include "../header/include.hpp"
 #include "../header/rook.hpp"
+#include "../header/bishop.hpp"
 #include "../header/fibonacci.hpp"
 #include "../header/pow.hpp"
+#include "../header/intToRoman.hpp"
+#include "../header/sumOfNumber.hpp"
 
 int main(int argc, char **argv){
+    
+    chess::rook(8, 3, 4);
+    chess::bishop(8, 3, 4);
     std::cout << magic::fibonacci(5) << std::endl;
-    //std::cout << math::pow(2, 3) << std::endl;
-    //std::cout << math::pow(2.5, 3) << std::endl;
-    //std::cout << math::pow(2.5, -3) << std::endl;
-    //std::cout << math::pow(1, 0) << std::endl;
-    return 0;
+    std::cout << math::pow(2, 3) << std::endl;
+    std::cout << math::pow(2.5, 3) << std::endl;
+    std::cout << math::pow(2.5, -3) << std::endl;
+    std::cout << math::pow(1, 0) << std::endl;
+    std::cout << cnvrt::intToRoman(100) << std::endl; 
+    std::cout << math::sumOfNumber(2345) << std::endl;
+    
+    return EXIT_SUCCESS;
 }
