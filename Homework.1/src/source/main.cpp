@@ -1,4 +1,4 @@
-// Copyright (c) Namakete (Ilya Oberemok полубог педиков) <namakete.dev@gmail.com>.
+// Copyright (c) Namakete (Ilya Oberemok) <namakete.dev@gmail.com>.
 // See the LICENCE file in the repository root for full licence text.
 
 #include "../header/include.hpp"
@@ -10,8 +10,6 @@
 #include "../header/sumOfNumber.hpp"
 
 int main(int argc, char **argv){
-
-    //все еще не нашел
 
     chess::rook(8, 3, 4);
     chess::bishop(8, 3, 4);
