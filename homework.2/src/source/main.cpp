@@ -8,12 +8,12 @@ int main()
     if (!in.is_open()){
         std::cerr << "File can not be opened\n";
         return 1;
-    }else{
+    }else{œ
         int n;
         in >> n;
         std::cout << n * 2 << '\n';
     }
-    
+
     while (!in.eof()){
         int n;
         in >> n;

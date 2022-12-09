@@ -1,0 +1,10 @@
+# Miscellaneous
+*.swp
+*.log
+.DS_Store
+
+# Intellij related
+*.iml
+*.ipr
+*.iws
+.idea/

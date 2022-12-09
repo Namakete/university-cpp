@@ -1,9 +1,7 @@
 #include <iostream>
-#include <vector>
 #include <iomanip>
 
-int *generateRandomArray(const int size)
-{
+int *generateRandomArray(const int size){
     int *arr = new int[size];
 
     for (int i = 0; i < size; ++i){
@@ -13,8 +11,7 @@ int *generateRandomArray(const int size)
     return arr;
 }
 
-void sortArray(int *pArr, int size)
-{
+void sortArray(int *pArr, int size){
     int temp;
     for (int i = 0; i < size - 1; i++){
         for (int j = i + 1; j < size; j++){
@@ -27,16 +24,14 @@ void sortArray(int *pArr, int size)
     }
 }
 
-void outputArray(const int *pArr, int size)
-{
+void outputArray(const int *pArr, int size){
     for (int i = 0; i < size; ++i){
         std::cout << std::setw(4) << pArr[i];
     }
     std::cout << std::endl;
 }
 
-int main()
-{
+int main(){
     const int ARRAY_SIZE = 6;
 
     int *pArr = generateRandomArray(ARRAY_SIZE);
