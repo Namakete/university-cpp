@@ -1,3 +1,6 @@
+// Copyright (c) Namakete (Ilya Oberemok) <namakete.dev@gmail.com>.
+// See the LICENCE file in the repository root for full licence text.
+
 #include <algorithm>
 #include <fstream>
 #include <iomanip>
@@ -14,16 +17,36 @@ namespace Model {
         std::string _file;
 
     public:
+        /*
+         * @param - Vector array - `_data`.
+         */
         explicit ISorterModels(std::vector<T> &_data);
 
+        /*
+         * @brief - Gets and returns the size of an array.
+         */
         std::vector<T> getData();
 
+        /*
+         * @brief - Sorting a vector array using the insertion algorithm.
+         */
         void insertionSort();
 
+        /*
+         * @brief - Sorting a vector array using the STL function.
+         */
         void sortSTL();
 
+        /*
+         * @brief - Sorting a vector array using a selection algorithm. The array elements are
+         * sorted using the `at()` function.
+         */
         void selectionSort();
 
+        /*
+         * @brief - Sorting a vector array using a selection algorithm. The array elements are
+         * sorted using the `iterator`.
+         */
         void insertionSortVector();
     };
 }
@@ -43,7 +66,7 @@ void Model::ISorterModels<T>::insertionSort() {
         std::size_t key = _data[i];
         std::size_t j = i - 1;
 
-        while (j >= 0 && _data[j] > key) {
+        while ((j >= 0) && (_data[j] > key)) {
             _data[j + 1] = _data[j];
             j = j - 1;
         }
@@ -93,6 +116,11 @@ class IReader {
 public:
     explicit IReader();
 
+    /*
+    * @brief - A function that reads data from a file as type char.
+    * @param - Empty vector array - `item`.
+    * @param - Name or path to the file - `file`.
+    */
     static void readDataFromFile(std::vector<char> &item,
                                  const std::string &file);
 };
@@ -100,7 +128,7 @@ public:
 IReader::IReader() = default;
 
 void IReader::readDataFromFile(std::vector<char> &item,
-                                  const std::string &file) {
+                               const std::string &file) {
     std::ifstream in(file);
 
     size_t capacity = 1;
@@ -133,6 +161,10 @@ class IInputEdit {
 public:
     explicit IInputEdit();
 
+    /*
+     * @brief - A function that collects the values entered from the keyboard into the stream.
+     * @param - Empty vector array - `item`.
+     */
     static void inputEditor(std::vector<T> &item);
 };
 
@@ -173,6 +205,13 @@ class IRandom {
 public:
     explicit IRandom();
 
+    /*
+    * @brief - Random number generation function.
+    * @param - Empty vector array - `item`.
+    * @param - Size of array - `size`.
+    * @param - From - `a`.
+    * @param - To - `b`.
+    */
     static void fillRandom(std::vector<T> &item, int size, T a, T b);
 };
 
@@ -193,6 +232,10 @@ namespace View {
     template<class T>
     class IPrintViews {
     public:
+        /*
+         * @brief - Array output function.
+         * @param - Vector array - `_data`.
+         */
         void out(std::vector<T> _data);
     };
 }
@@ -282,7 +325,7 @@ int main() {
     }
 
     std::vector<char> str;
-    IReader::readDataFromFile(str, "file1.txt");
+    IReader::readDataFromFile(str, "input.txt");
 
     for (auto &item: str) {
         std::cout << item;

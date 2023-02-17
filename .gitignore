@@ -10,3 +10,4 @@
 .idea/
 
 cmake-build-debug/
+ex.1/CMakeLists.txt
