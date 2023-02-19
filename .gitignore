@@ -11,3 +11,5 @@
 
 cmake-build-debug/
 ex.1/CMakeLists.txt
+ex.3/CMakeLists.txt
+ex.2/CMakeLists.txt

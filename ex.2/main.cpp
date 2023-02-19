@@ -1,3 +1,6 @@
+// Copyright (c) Namakete (Ilya Oberemok) <namakete.dev@gmail.com>.
+// See the LICENCE file in the repository root for full licence text.
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -8,12 +11,28 @@ class IFilter {
 public:
     explicit IFilter();
 
+    /*
+    * @brief Remove all unnecessary spaces in text.
+    * sorted String - `&str`
+    */
     static void removeSpaces(std::string &str);
 
+    /*
+    * @brief Put a space after each punctuation mark.
+    * sorted String - `&str`
+    */
     static void checkPunctuation(std::string &str);
 
+    /*
+    * @brief Replace every 10-letter word with the word "Vau!!!".
+    * sorted String - `&str`
+    */
     static void replaceWord(std::string &str);
 
+    /*
+    * @brief Move text to new line if length is 40 char.
+    * sorted String - `&str`
+    */
     static void splitString(std::string &str);
 };
 
