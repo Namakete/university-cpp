@@ -1,38 +1,38 @@
 // Copyright (c) Namakete (Ilya Oberemok) <namakete.dev@gmail.com>.
 // See the LICENCE file in the repository root for full licence text.
 
-#include <iostream>
-#include <string>
 #include <fstream>
+#include <iostream>
 #include <regex>
+#include <string>
 #include <utility>
 
 class IFilter {
-public:
+   public:
     explicit IFilter();
 
     /*
-    * @brief Remove all unnecessary spaces in text.
-    * sorted String - `&str`
-    */
+     * @brief Remove all unnecessary spaces in text.
+     * sorted String - `&str`
+     */
     static void removeSpaces(std::string &str);
 
     /*
-    * @brief Put a space after each punctuation mark.
-    * sorted String - `&str`
-    */
+     * @brief Put a space after each punctuation mark.
+     * sorted String - `&str`
+     */
     static void checkPunctuation(std::string &str);
 
     /*
-    * @brief Replace every 10-letter word with the word "Vau!!!".
-    * sorted String - `&str`
-    */
+     * @brief Replace every 10-letter word with the word "Vau!!!".
+     * sorted String - `&str`
+     */
     static void replaceWord(std::string &str);
 
     /*
-    * @brief Move text to new line if length is 40 char.
-    * sorted String - `&str`
-    */
+     * @brief Move text to new line if length is 40 char.
+     * sorted String - `&str`
+     */
     static void splitString(std::string &str);
 };
 
@@ -45,7 +45,7 @@ void IFilter::removeSpaces(std::string &str) {
 }
 
 void IFilter::checkPunctuation(std::string &str) {
-    std::regex punctuation("[.!?]");
+    std::regex punctuation("[.!?:;]");
     for (std::sregex_iterator it(str.begin(), str.end(), punctuation), end; it != end; ++it) {
         str.insert(it->position() + 1, " ");
     }

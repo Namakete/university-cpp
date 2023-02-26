@@ -9,7 +9,12 @@
 *.iws
 .idea/
 
-cmake-build-debug/
+build/
 ex.1/CMakeLists.txt
 ex.3/CMakeLists.txt
 ex.2/CMakeLists.txt
+ex.8/CMakeLists.txt
+ex.7/CMakeLists.txt
+ex.6/CMakeLists.txt
+ex.4/CMakeLists.txt
+university-cpp-workspace.code-workspace

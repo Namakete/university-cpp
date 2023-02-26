@@ -1,8 +1,8 @@
-#include <iostream>
 #include <deque>
+#include <iostream>
 #include <list>
-#include <utility>
 #include <random>
+#include <utility>
 
 typedef enum {
     LOW,
@@ -15,11 +15,10 @@ typedef struct {
 } QueueElement;
 
 class QueueWithPriority {
-private:
+   private:
     std::deque<std::pair<QueueElement, ElementPriority>> _queue;
 
-
-public:
+   public:
     QueueWithPriority();
 
     ~QueueWithPriority();
@@ -85,10 +84,10 @@ int main() {
     std::list<int> l(15);
 
     std::mt19937 rng(std::random_device{}());
-    std::generate_n(l.begin(), 15, [&](){ return std::uniform_int_distribution<int>{1, 20}(rng); });
+    std::generate_n(l.begin(), 15, [&]() { return std::uniform_int_distribution<int>{1, 20}(rng); });
 
-    for (auto item: l) {
-        std::cout << item << " " ;
+    for (auto item : l) {
+        std::cout << item << " ";
     }
     std::cout << std::endl;
 

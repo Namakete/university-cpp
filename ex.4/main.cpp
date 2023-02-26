@@ -1,11 +1,10 @@
 #include <iostream>
 
-template<typename T>
+template <typename T>
 class Iterator : public std::iterator<std::input_iterator_tag, T> {
-
     friend class Container;
 
-public:
+   public:
     Iterator(const Iterator &it);
 
     typename Iterator::reference operator*() const;
@@ -14,50 +13,50 @@ public:
 
     Iterator &operator--();
 
-private:
+   private:
     Iterator(T *p);
 
     T *p;
 };
 
-template<typename T>
+template <typename T>
 Iterator<T>::Iterator(T *p) : p(p) {}
 
-template<typename T>
+template <typename T>
 Iterator<T>::Iterator(const Iterator &it) : p(it.p) {}
 
-template<typename T>
+template <typename T>
 typename Iterator<T>::reference Iterator<T>::operator*() const {
     return *p;
 }
 
-template<typename T>
+template <typename T>
 Iterator<T> &Iterator<T>::operator++() {
     ++p;
     return *this;
 }
 
-template<typename T>
+template <typename T>
 Iterator<T> &Iterator<T>::operator--() {
     --p;
     return *this;
 }
 
 class Container {
-private:
+   private:
     typedef Iterator<int> _iterator;
     typedef Iterator<const int> _constIterator;
 
-private:
+   private:
     void _fillItems();
 
     int _factorial(int n);
 
-private:
+   private:
     const size_t _size = 10;
     std::unique_ptr<int[]> _items;
 
-public:
+   public:
     Container();
 
     _iterator begin();

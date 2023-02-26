@@ -1,7 +1,7 @@
-#include <iostream>
-#include <vector>
 #include <algorithm>
+#include <iostream>
 #include <random>
+#include <vector>
 
 struct DataStruct {
     int key1{};
@@ -9,18 +9,7 @@ struct DataStruct {
     std::string str;
 };
 
-std::vector<std::string> table = {
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-        "G",
-        "H",
-        "K",
-        "L"
-};
+std::vector<std::string> table = {"A", "B", "C", "D", "E", "F", "G", "H", "K", "L"};
 
 std::vector<DataStruct> fillVector() {
     std::vector<DataStruct> vec;
@@ -43,7 +32,7 @@ std::vector<DataStruct> fillVector() {
     return vec;
 }
 
-bool compareDataStruct(const DataStruct& a, const DataStruct& b) {
+bool compareDataStruct(const DataStruct &a, const DataStruct &b) {
     bool flag = false;
 
     if (a.key1 < b.key1) {
@@ -64,7 +53,7 @@ bool compareDataStruct(const DataStruct& a, const DataStruct& b) {
 int main() {
     std::vector<DataStruct> vec = fillVector();
 
-    for (const DataStruct& ds : vec) {
+    for (const DataStruct &ds : vec) {
         std::cout << ds.key1 << " " << ds.key2 << " " << ds.str << std::endl;
     }
 
@@ -72,7 +61,7 @@ int main() {
 
     std::cout << std::endl;
 
-    for (const DataStruct& ds : vec) {
+    for (const DataStruct &ds : vec) {
         std::cout << ds.key1 << " " << ds.key2 << " " << ds.str << std::endl;
     }
 

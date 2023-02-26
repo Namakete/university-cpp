@@ -5,62 +5,62 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <random>
 #include <utility>
 #include <vector>
-#include <random>
 
 namespace Model {
-    template<class T>
-    class ISorterModels {
-    private:
-        std::vector<T> _data;
-        std::string _file;
+template <class T>
+class ISorterModels {
+   private:
+    std::vector<T> _data;
+    std::string _file;
 
-    public:
-        /*
-         * @param - Vector array - `_data`.
-         */
-        explicit ISorterModels(std::vector<T> &_data);
+   public:
+    /*
+     * @param - Vector array - `_data`.
+     */
+    explicit ISorterModels(std::vector<T> &_data);
 
-        /*
-         * @brief - Gets and returns the size of an array.
-         */
-        std::vector<T> getData();
+    /*
+     * @brief - Gets and returns the size of an array.
+     */
+    std::vector<T> getData();
 
-        /*
-         * @brief - Sorting a vector array using the insertion algorithm.
-         */
-        void insertionSort();
+    /*
+     * @brief - Sorting a vector array using the insertion algorithm.
+     */
+    void insertionSort();
 
-        /*
-         * @brief - Sorting a vector array using the STL function.
-         */
-        void sortSTL();
+    /*
+     * @brief - Sorting a vector array using the STL function.
+     */
+    void sortSTL();
 
-        /*
-         * @brief - Sorting a vector array using a selection algorithm. The array elements are
-         * sorted using the `at()` function.
-         */
-        void selectionSort();
+    /*
+     * @brief - Sorting a vector array using a selection algorithm. The array
+     * elements are sorted using the `at()` function.
+     */
+    void selectionSort();
 
-        /*
-         * @brief - Sorting a vector array using a selection algorithm. The array elements are
-         * sorted using the `iterator`.
-         */
-        void insertionSortVector();
-    };
-}
+    /*
+     * @brief - Sorting a vector array using a selection algorithm. The array
+     * elements are sorted using the `iterator`.
+     */
+    void insertionSortVector();
+};
+}  // namespace Model
 
-template<class T>
+template <class T>
 Model::ISorterModels<T>::ISorterModels(std::vector<T> &_data)
-        : _data(std::move(_data)) {}
+    : _data(std::move(_data)) {}
 
-template<class T>
+template <class T>
 std::vector<T> Model::ISorterModels<T>::getData() {
     return _data;
 }
 
-template<class T>
+template <class T>
 void Model::ISorterModels<T>::insertionSort() {
     for (std::size_t i = 0; i < _data.size(); ++i) {
         std::size_t key = _data[i];
@@ -74,12 +74,12 @@ void Model::ISorterModels<T>::insertionSort() {
     }
 }
 
-template<class T>
+template <class T>
 void Model::ISorterModels<T>::sortSTL() {
     std::sort(_data.begin(), _data.end());
 }
 
-template<class T>
+template <class T>
 void Model::ISorterModels<T>::selectionSort() {
     for (std::size_t i = 0; i < _data.size() - 1; ++i) {
         std::size_t minIndex = i;
@@ -97,9 +97,9 @@ void Model::ISorterModels<T>::selectionSort() {
     }
 }
 
-template<class T>
+template <class T>
 void Model::ISorterModels<T>::insertionSortVector() {
-    int temp = 0;
+    int temp;
 
     for (std::vector<int>::iterator i = _data.begin() + 1, j; i != _data.end();
          ++i) {
@@ -113,14 +113,14 @@ void Model::ISorterModels<T>::insertionSortVector() {
 }
 
 class IReader {
-public:
+   public:
     explicit IReader();
 
     /*
-    * @brief - A function that reads data from a file as type char.
-    * @param - Empty vector array - `item`.
-    * @param - Name or path to the file - `file`.
-    */
+     * @brief - A function that reads data from a file as type char.
+     * @param - Empty vector array - `item`.
+     * @param - Name or path to the file - `file`.
+     */
     static void readDataFromFile(std::vector<char> &item,
                                  const std::string &file);
 };
@@ -156,22 +156,23 @@ void IReader::readDataFromFile(std::vector<char> &item,
     item = std::vector<char>(data, data + size);
 }
 
-template<class T>
+template <class T>
 class IInputEdit {
-public:
+   public:
     explicit IInputEdit();
 
     /*
-     * @brief - A function that collects the values entered from the keyboard into the stream.
+     * @brief - A function that collects the values entered from the keyboard into
+     * the stream.
      * @param - Empty vector array - `item`.
      */
     static void inputEditor(std::vector<T> &item);
 };
 
-template<class T>
+template <class T>
 IInputEdit<T>::IInputEdit() = default;
 
-template<class T>
+template <class T>
 void IInputEdit<T>::inputEditor(std::vector<T> &item) {
     item.clear();
 
@@ -184,41 +185,39 @@ void IInputEdit<T>::inputEditor(std::vector<T> &item) {
     }
 
     if (item.back() == 1) {
-        for (int i = 0; i < item.size(); i++) {
-            if ((i % 2) == 0) {
-                item.erase(item.begin() + i);
-                i--;
+        for (auto itr = item.begin(); itr != item.end(); ++itr) {
+            if ((*itr % 2) == 0) {
+                item.erase(itr);
             }
         }
     } else if (item.back() == 2) {
-        for (int i = 0; i < item.size(); i++) {
-            if (i % 3 == 0) {
-                item.insert(item.begin() + i + 1, 1, 1);
-                i += 3;
+        for (auto itr = item.begin(); itr != item.end(); ++itr) {
+            if ((*itr % 3) == 0) {
+                item.insert(itr + 1, 3, 1);
             }
         }
     }
 }
 
-template<class T>
+template <class T>
 class IRandom {
-public:
+   public:
     explicit IRandom();
 
     /*
-    * @brief - Random number generation function.
-    * @param - Empty vector array - `item`.
-    * @param - Size of array - `size`.
-    * @param - From - `a`.
-    * @param - To - `b`.
-    */
+     * @brief - Random number generation function.
+     * @param - Empty vector array - `item`.
+     * @param - Size of array - `size`.
+     * @param - From - `a`.
+     * @param - To - `b`.
+     */
     static void fillRandom(std::vector<T> &item, int size, T a, T b);
 };
 
-template<class T>
+template <class T>
 IRandom<T>::IRandom() = default;
 
-template<class T>
+template <class T>
 void IRandom<T>::fillRandom(std::vector<T> &item, int size, T a, T b) {
     item.clear();
     item.resize(size);
@@ -229,78 +228,87 @@ void IRandom<T>::fillRandom(std::vector<T> &item, int size, T a, T b) {
 }
 
 namespace View {
-    template<class T>
-    class IPrintViews {
-    public:
-        /*
-         * @brief - Array output function.
-         * @param - Vector array - `_data`.
-         */
-        void out(std::vector<T> _data);
-    };
-}
+template <class T>
+class IPrintViews {
+   public:
+    /*
+     * @brief - Array output function.
+     * @param - Vector array - `_data`.
+     */
+    void out(std::vector<T> _data);
+};
+}  // namespace View
 
-template<class T>
+template <class T>
 void View::IPrintViews<T>::out(std::vector<T> _data) {
-    auto start = std::chrono::high_resolution_clock::now();
-
-    for (auto &item: _data) {
+    for (auto &item : _data) {
         std::cout << std::setw(10) << item;
     }
     std::cout << std::endl;
-
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-
-    std::cout << "Time: " << duration.count() << "s" << std::endl;
 }
 
 namespace Controller {
-    template<class T>
-    class ISorterControllers {
-    private:
-        Model::ISorterModels<T> _sorterModels;
-        View::IPrintViews<T> _printViews;
+template <class T>
+class ISorterControllers {
+   private:
+    Model::ISorterModels<T> _sorterModels;
+    View::IPrintViews<T> _printViews;
 
-    public:
-        explicit ISorterControllers(std::vector<T> _data);
+   public:
+    explicit ISorterControllers(std::vector<T> _data);
 
-        void insertionSort();
+    void insertionSort();
 
-        void sortSTL();
+    void sortSTL();
 
-        void selectionSort();
+    void selectionSort();
 
-        void insertionSortVector();
-    };
-}
+    void insertionSortVector();
+};
+}  // namespace Controller
 
-template<class T>
+template <class T>
 Controller::ISorterControllers<T>::ISorterControllers(std::vector<T> _data)
-        : _sorterModels(_data) {}
+    : _sorterModels(_data) {}
 
-template<class T>
+template <class T>
 void Controller::ISorterControllers<T>::insertionSort() {
+    auto start = std::chrono::high_resolution_clock::now();
     _sorterModels.insertionSort();
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<float> duration = (end - start);
     _printViews.out(_sorterModels.getData());
+    std::cout << "Time: " << duration.count() << "s" << std::endl;
 }
 
-template<class T>
+template <class T>
 void Controller::ISorterControllers<T>::sortSTL() {
+    auto start = std::chrono::high_resolution_clock::now();
     _sorterModels.sortSTL();
+    auto end = std::chrono::high_resolution_clock::now();
     _printViews.out(_sorterModels.getData());
+    std::chrono::duration<float> duration = (end - start);
+    std::cout << "Time: " << duration.count() << "s" << std::endl;
 }
 
-template<class T>
+template <class T>
 void Controller::ISorterControllers<T>::selectionSort() {
+    auto start = std::chrono::high_resolution_clock::now();
     _sorterModels.selectionSort();
+    auto end = std::chrono::high_resolution_clock::now();
     _printViews.out(_sorterModels.getData());
+    std::chrono::duration<float> duration = (end - start);
+    std::cout << "Time: " << duration.count() << "s" << std::endl;
 }
 
-template<class T>
+template <class T>
 void Controller::ISorterControllers<T>::insertionSortVector() {
+    auto start = std::chrono::high_resolution_clock::now();
     _sorterModels.insertionSortVector();
+    auto end = std::chrono::high_resolution_clock::now();
     _printViews.out(_sorterModels.getData());
+    std::chrono::duration<float> duration = (end - start);
+    std::cout << "Time: " << duration.count() << "s" << std::endl;
 }
 
 int main() {
@@ -318,7 +326,7 @@ int main() {
     std::vector<double> data;
     std::vector<int> size{3, 5, 7, 9, 11};
 
-    for (auto &s: size) {
+    for (auto &s : size) {
         IRandom<double>::fillRandom(data, s, -0.1, 1.0);
         Controller::ISorterControllers<double> m(data);
         m.sortSTL();
@@ -327,7 +335,7 @@ int main() {
     std::vector<char> str;
     IReader::readDataFromFile(str, "input.txt");
 
-    for (auto &item: str) {
+    for (auto &item : str) {
         std::cout << item;
     }
     std::cout << std::endl;
