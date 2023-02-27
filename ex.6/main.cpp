@@ -1,3 +1,6 @@
+// Copyright (c) Namakete (Ilya Oberemok) <namakete.dev@gmail.com>.
+// See the LICENCE file in the repository root for full licence text.
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -56,10 +59,12 @@ void IReader::outputTextData(std::vector<std::string> &item) {
         std::cout << item[i] << "\n";
     }
 }
-
+/*
+ * @brief - Structure for coordinate points.
+ */
 struct Point {
-    int x = 0;
-    int y = 0;
+    int x = 0;  // `x` coordinate
+    int y = 0;  // `y` coordinate;
 };
 
 int sqrDist(Point a, Point b) {
@@ -68,7 +73,13 @@ int sqrDist(Point a, Point b) {
 
 namespace math {
 struct Shape {
+    // Number of vertices, for a triangle 3, for a square and
+    // Rectangle 4
     int numberOfVertices;
+    // Vector containing the coordinates of the figure's vertices
+    // For triangle contains 3 elements
+    // For square and rectangle contains 4 elements
+    // For a 5 element pentagon
     std::vector<Point> vertices;
 
     bool isTriangle() {

@@ -1,3 +1,6 @@
+// Copyright (c) Namakete (Ilya Oberemok) <namakete.dev@gmail.com>.
+// See the LICENCE file in the repository root for full licence text.
+
 #include <deque>
 #include <iostream>
 #include <list>
@@ -20,26 +23,28 @@ class QueueWithPriority {
 
    public:
     QueueWithPriority();
-
+    
     ~QueueWithPriority();
-
+    
     void PutElementToQueue(const QueueElement &element, ElementPriority priority);
 
     QueueElement GetElementFromQueue();
 
     [[nodiscard]] bool isEmpty() const;
 };
-
+/*
+ * @brief - Constructor, creates an empty queue.
+ */
 QueueWithPriority::QueueWithPriority() = default;
-
+/*
+ * @brief - Destructor
+ */
 QueueWithPriority::~QueueWithPriority() {
     _queue.clear();
 }
-
-void QueueWithPriority::PutElementToQueue(const QueueElement &element, ElementPriority priority) {
-    _queue.emplace_back(element, priority);
-}
-
+/*
+ * @brief - A function that adds an element to the queue with a given priority.
+ */
 QueueElement QueueWithPriority::GetElementFromQueue() {
     if (_queue.empty()) {
         auto r = _queue.front().first;
@@ -47,8 +52,9 @@ QueueElement QueueWithPriority::GetElementFromQueue() {
 
         return r;
     }
-
+    // Returns a reference to the __firt__ element in the queue.
     auto r = _queue.front();
+    // Returns a reference to the __last__ element in the queue.
     auto t = _queue.begin();
 
     for (auto it = _queue.begin() + 1; it != _queue.end() && r.second != ElementPriority::HIGH; it++) {
@@ -57,11 +63,20 @@ QueueElement QueueWithPriority::GetElementFromQueue() {
             t = it;
         }
     }
+    // Removes elements from a range whose start and end point to iterators.
     _queue.erase(t);
 
     return r.first;
 }
-
+/*
+ * @brief - Setting our alimony in place.
+ */
+void QueueWithPriority::PutElementToQueue(const QueueElement &element, ElementPriority priority) {
+    _queue.emplace_back(element, priority);
+}
+/*
+ * @brief - Checking for an existing element.
+ */
 bool QueueWithPriority::isEmpty() const {
     return _queue.empty();
 }
@@ -82,15 +97,17 @@ int main() {
     }
 
     std::list<int> l(15);
-
+    // Generate random 15 array values ranging from 1...20.
     std::mt19937 rng(std::random_device{}());
-    std::generate_n(l.begin(), 15, [&]() { return std::uniform_int_distribution<int>{1, 20}(rng); });
-
+    std::generate_n(l.begin(), 15, [&]() {
+        return std::uniform_int_distribution<int>{1, 20}(rng);
+    });
+    // Output the resulting array.
     for (auto item : l) {
         std::cout << item << " ";
     }
     std::cout << std::endl;
-
+    // Get a reference to the __first__ and __end__ of the array.
     auto i = l.begin();
     auto j = l.end();
 

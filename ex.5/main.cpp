@@ -1,3 +1,6 @@
+// Copyright (c) Namakete (Ilya Oberemok) <namakete.dev@gmail.com>.
+// See the LICENCE file in the repository root for full licence text.
+
 #include <algorithm>
 #include <iostream>
 #include <random>
@@ -11,6 +14,9 @@ struct DataStruct {
 
 std::vector<std::string> table = {"A", "B", "C", "D", "E", "F", "G", "H", "K", "L"};
 
+/*
+ * @brief - Generating an array of random values.
+ */
 std::vector<DataStruct> fillVector() {
     std::vector<DataStruct> vec;
 
@@ -19,6 +25,7 @@ std::vector<DataStruct> fillVector() {
     std::uniform_int_distribution<> dis(-5, 5);
     std::uniform_int_distribution<> dis2(0, 9);
 
+    // Set the dictionary data to random positions in the array.
     for (int i = 0; i < 5; i++) {
         DataStruct ds;
 
@@ -32,6 +39,10 @@ std::vector<DataStruct> fillVector() {
     return vec;
 }
 
+// c. Sorts the vector like this:
+//  i. Asc key1
+//  ii. If key1 are the same, then ascending key2
+//  iii. If key1 and key2 are the same, then in ascending order the strings str are long
 bool compareDataStruct(const DataStruct &a, const DataStruct &b) {
     bool flag = false;
 
